@@ -11,8 +11,8 @@ pipeline {
                      amazon/aws-cli rds describe-db-instances --region \
                      eu-central-1 --query DBInstances[0].Endpoint.Address > output.txt
                      """
-                     sh "export DB_URL=\$(cut -d '"' -f 2 output.txt)"
-                     sh "echo "$DB_URL"
+                     sh "export DB_URL=$(cut -d '"' -f 2 output.txt)"
+                     sh "echo "$DB_URL""
                     }
                 }
             }
