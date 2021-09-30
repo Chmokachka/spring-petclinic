@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Check aws') {
+        stage('Get db url and change localhost') {
             steps {
                 script{
                   withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'),string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')]) {
@@ -14,6 +14,13 @@ pipeline {
                      sh """export DB_URL=\$(cut -d '"' -f 2 output.txt); \
                       sed -i "s/localhost/\$DB_URL/g" /var/jenkins_home/workspace/Build/src/main/resources/application-mysql.properties"""
                     }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script{
+                  sh "./mvnw package"
                 }
             }
         }
