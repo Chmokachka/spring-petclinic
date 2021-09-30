@@ -12,7 +12,7 @@ pipeline {
                      eu-central-1 --query DBInstances[0].Endpoint.Address > output.txt
                      """
                      sh """export DB_URL=\$(cut -d '"' -f 2 output.txt); \
-                      sed -i "s/localhost/\$DB_URL/g" /var/jenkins_home/Build/src/main/resources/application-mysql.properties"""
+                      sed -i "s/localhost/\$DB_URL/g" /var/jenkins_home/workspace/Build/src/main/resources/application-mysql.properties"""
                     }
                 }
             }
