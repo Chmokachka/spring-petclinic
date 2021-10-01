@@ -6,7 +6,7 @@ pipeline {
                 script{
                     sh """pwd; \
                     cd ../Build; \
-                    pwd"""
+                    ls -la"""
                 }
             }
         }
