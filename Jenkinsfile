@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools{
+        maven 'apache-maven-3.8.2'
+    }
     stages {
         stage('Get db url and change localhost') {
             steps {
